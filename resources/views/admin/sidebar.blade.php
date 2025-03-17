@@ -34,7 +34,7 @@
                         <div class="collapse" id="dashboard">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="admin/admins">
+                                    <a href="{{ route('admin.index') }}">
                                         <span class="sub-item">Admins</span>
                                     </a>
                                 </li>
