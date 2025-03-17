@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Route;
         Route::get('/', [LoginController::class, 'create'])->name('admin.login');
     Route::post('/', [LoginController::class, 'store']);
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
-
     //Admin Register
     Route::get('register', [RegisteredAdminController::class, 'create'])->name('admin.register');
     Route::post('register', [RegisteredAdminController::class, 'store']);
+
 
 //Admin Login
     Route::get('login', [LoginController::class, 'create'])->name('admin.login');
@@ -22,6 +22,7 @@ Route::prefix('admin')->middleware('guest:admin')->group(function () {
 });
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
+
     Route::get('/admins', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admins/create', [AdminController::class, 'create'])->name('admin.create');
     Route::post('/admins', [AdminController::class, 'store'])->name('admin.store');
@@ -30,9 +31,10 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::delete('/admins/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
     //ADmin Dashboard
-    Route::get('/', function () {
-        return view('admin.masterpage');
-    })->name('admin.masterpage');
+Route::get('/', function () {
+    return view('admin.masterpage');
+})->name('admin.masterpage')->middleware('redirect.admin');
+
 
 
         //Admin logout

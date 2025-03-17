@@ -12,6 +12,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'redirect.admin' => \App\Http\Middleware\RedirectIfNotAuthenticatedAdmin::class,
         // Other middleware
         'checksuperadmin' => \App\Http\Middleware\CheckSuperAdmin::class,
     ];
