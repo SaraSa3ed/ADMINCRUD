@@ -7,7 +7,8 @@ use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
 use App\Http\Controllers\Admin\AdminsController; // Import the AdminController
 
 use Illuminate\Support\Facades\Route;
-
+        Route::get('/', [LoginController::class, 'create'])->name('admin.login');
+    Route::post('/', [LoginController::class, 'store']);
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
 
     //Admin Register
@@ -17,6 +18,7 @@ Route::prefix('admin')->middleware('guest:admin')->group(function () {
 //Admin Login
     Route::get('login', [LoginController::class, 'create'])->name('admin.login');
     Route::post('login', [LoginController::class, 'store']);
+
 });
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
